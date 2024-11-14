@@ -1,0 +1,50 @@
+
+#include <iostream>
+#include <stack>
+#include <string>
+#include <cctype>
+using namespace std;
+void printOriginalAndReversedString(string input) {
+    stack<char> charStack;
+    for (char c : input) {
+        if (isalnum(c)) {
+            charStack.push(tolower(c)); 
+    }
+    cout << "Original String: " << input << endl;
+    cout << "Reversed String: ";
+    while (!charStack.empty()) {
+        cout << charStack.top();
+        charStack.pop();
+    }
+    cout << endl;
+}
+bool isPalindrome(string input) {
+    stack<char> charStack;
+    string in;
+    for (char c : input) {
+        if (isalnum(c)) {
+           in+=tolower(c);
+            charStack.push(tolower(c)); 
+        }
+    }
+    string reversedString;
+    while (!charStack.empty()) {
+        reversedString += charStack.top();
+        charStack.pop();
+    }
+    return in == reversedString;
+}
+int main() 
+{
+    string input;
+    cout << "Enter a string: ";
+    getline(cin, input);
+    printOriginalAndReversedString(input);
+    if (isPalindrome(input)) {
+        cout << "The given string is a palindrome." << endl;
+    } else {
+        cout << "The given string is not a palindrome." << endl;
+    }
+
+    return 0;
+}
